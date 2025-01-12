@@ -1,0 +1,45 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake abnormal usage of OAuth access token
+description: |-
+  ## Goal
+
+  Detect abnormal OAuth access token usage in your Snowflake environment.
+
+  ## Strategy
+
+  This rule identifies when an account authenticates with an OAuth access token outside an automated service or driver.
+
+  OAuth access tokens serve as digital keys for accessing protected resources. If an attacker compromises a user account, they may steal the associated access token.
+
+  Reviewing access token usage during an incident can reveal unusual activity patterns, such as:
+
+  - Access tokens being used from unexpected locations.
+  - Access tokens being used to access unauthorized resources.
+  - A sudden spike in access token usage.
+
+  ## Triage and Response
+
+  1. Inspect the logs to verify if the IP address aligns with expected user or service account behavior.
+  2. Investigate unfamiliar IP addresses that are followed by query activity.
+  3. If the account is compromised, recreate the access token.
+enabled: true
+severity: High
+query_text: |-
+  %ingest.source_type:snowflake
+  snowflake.table:login_history
+  first_authentication_factor:OAUTH_ACCESS_TOKEN
+  (not reported_client_type:JDBC_DRIVER)
+  (not reported_client_type:ODBC_DRIVER)
+  (not reported_client_type:PYTHON_DRIVER)
+  (not reported_client_type:JAVASCRIPT_DRIVER)
+  (not client_ip:0.0.0.0)
+  | groupbycount(usr.name)
+  | where @q.count0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+tags:
+- tactics.ta0006.credential_access
+- source.snowflake
+- techniques.t1528.steal_application_access_token

@@ -1,0 +1,33 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake user granted admin role
+description: |-
+  ## Goal
+
+  Detect new admin grants to users in your Snowflake environment.
+
+  ## Strategy
+
+  This rule identifies when a user gains administrator privileges in Snowflake. If an attacker obtains these privileges, they may grant admin-level access to another compromised user to evade detection. The following admin permissions are available: AccountAdmin, OrgAdmin, SysAdmin, and SecurityAdmin.
+
+  ## Triage and response
+
+  1. Inspect the logs to identify the user, role granted, and timestamp.
+  2. Investigate whether the user's elevated permissions are expected.
+  3. If there are signs of compromise, disable the user associated with the admin grant and rotate credentials.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:snowflake
+  snowflake.table:grants_to_users
+  action:GRANT_CREATED
+  role:(ORGADMIN ACCOUNTADMIN SECURITYADMIN SYSADMIN)
+  | groupbycount(usr.name)
+  | where @q.count1
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- source.snowflake
+- techniques.t1078.valid_accounts
+- tactics.ta0001.initial_access
