@@ -22,7 +22,7 @@ query_text: |-
   action:GRANT_CREATED
   role:(ORGADMIN ACCOUNTADMIN SECURITYADMIN SYSADMIN)
   | groupbycount(usr.name)
-  | where @q.count1
+  | where @q.count > 0
 time_range_s: 300
 run_frequency_s: 60
 event_sink_keys:

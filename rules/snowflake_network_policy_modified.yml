@@ -22,7 +22,7 @@ query_text: |-
   snowflake.table:query_history
   query.type:(CREATE_NETWORK_POLICY ALTER_NETWORK_POLICY DROP_NETWORK_POLICY)
   | groupbycount(usr.name)
-  | where @q.count1
+  | where @q.count > 0
 time_range_s: 300
 run_frequency_s: 60
 event_sink_keys:
