@@ -33,7 +33,7 @@ query_text: |-
   (not reported_client_type:PYTHON_DRIVER)
   (not reported_client_type:JAVASCRIPT_DRIVER)
   (not client_ip:0.0.0.0)
-  | groupbycount(usr.name)
+  | groupbycount(user_name)
   | where @q.count > 0
 time_range_s: 300
 run_frequency_s: 60

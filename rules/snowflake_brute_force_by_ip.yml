@@ -1,0 +1,20 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake Brute Force Attacks by IP
+description: |-
+  Detect a potential brute force attack by monitoring failed logins from the same IP address.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:snowflake
+  event_type:LOGIN
+  is_success:NO
+  | groupbycount(client_ip)
+  | where @q.count >= 5
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0006.credential_access
+- techniques.t1110.brute_force
+- source.snowflake

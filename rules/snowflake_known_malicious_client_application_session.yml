@@ -1,0 +1,20 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake Known Malicious Client Application Session
+description: |-
+  Detect known malicious client applications interacting in your Snowflake environment.
+  An attacker may set up a session from an outside tool to access and exfiltrate data.
+enabled: true
+severity: High
+query_text: |-
+  %ingest.source_type:snowflake
+  (client_environment.application:*rapeflake* OR (client_environment.application:*DBeaver* AND client_environment.os:Windows))
+  | groupbycount(client_environment.application)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- high_severity_alerts
+tags:
+- tactics.ta0001.initial_access
+- techniques.t1199.trusted_relationship
+- source.snowflake

@@ -21,7 +21,7 @@ query_text: |-
   snowflake.table:grants_to_users
   action:GRANT_CREATED
   role:(ORGADMIN ACCOUNTADMIN SECURITYADMIN SYSADMIN)
-  | groupbycount(usr.name)
+  | groupbycount(user_name)
   | where @q.count > 0
 time_range_s: 300
 run_frequency_s: 60

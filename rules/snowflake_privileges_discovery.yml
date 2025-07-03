@@ -1,0 +1,22 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake Privileges Discovery Activity
+description: |-
+  Detect possible privileges discovery activity in Snowflake.
+  This can indicate potential reconnaissance or privilege
+  escalation attempts.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:snowflake
+  query_type:SHOW
+  query_text:(SHOW and ROLES)
+  | groupbycount(user_name)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0007.discovery
+- techniques.t1087.account_discovery
+- source.snowflake

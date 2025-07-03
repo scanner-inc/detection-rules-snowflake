@@ -1,0 +1,21 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake User Enabled
+description: |-
+  Detect when previously disabled user accounts are reenabled in Snowfake.
+enabled: true
+severity: Informational
+query_text: |-
+  %ingest.source_type:snowflake
+  query_type:ALTER_USER
+  execution_status:SUCCESS
+  query_text:'SET DISABLED=FALSE'
+  | groupbycount(user_name)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+tags:
+- tactics.ta0003.persistence
+- techniques.t1136.create_account
+- source.snowflake

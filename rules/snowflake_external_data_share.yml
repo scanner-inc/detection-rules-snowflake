@@ -1,0 +1,29 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake External Data Share
+description: |-
+  Detect when a data transfer between different cloud regions or providers
+  occurs, which may indicate data exfiltration or unauthorized data movement.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:snowflake
+  source_cloud:*
+  target_cloud:*
+  bytes_transferred > 0
+  | stats
+    sum(bytes_transferred) as total_bytes
+    by
+    source_cloud,
+    source_region,
+    target_cloud,
+    target_region
+  | eval same_region = (`source_region` == `target_region` and `source_cloud` == `target_cloud`)
+  | where same_region="false"
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0010.exfiltration
+- techniques.t1537.transfer_data_to_cloud_account
+- source.snowflake

@@ -1,0 +1,22 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake File Downloaded from Stage
+description: |-
+  Detect when files are downloaded from Snowflake stages, which may indicate data exfiltration attempts.
+enabled: true
+severity: Informational
+query_text: |-
+  %ingest.source_type:snowflake
+  query_type:GET_FILES
+  execution_status:SUCCESS
+  (not query_text:'GET \'@~/worksheet_data/metadata\' \'file:///\'')
+  query_text:GET
+  | groupbycount(user_name)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+tags:
+- tactics.ta0010.exfiltration
+- techniques.t1041.exfiltration_over_c2_channel
+- source.snowflake

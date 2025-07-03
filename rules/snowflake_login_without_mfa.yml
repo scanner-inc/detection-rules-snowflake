@@ -1,0 +1,22 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake Login Without MFA
+description: |-
+  Detect Snowflake logins without multi-factor authentication.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:snowflake
+  event_type:LOGIN
+  is_success:YES
+  first_authentication_factor:PASSWORD
+  (not second_authentication_factor:*)
+  | groupbycount(user_name)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0005.defense_evasion
+- techniques.t1556.modify_authentication_process
+- source.snowflake

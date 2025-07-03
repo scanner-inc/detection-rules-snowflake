@@ -1,0 +1,20 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake Possible Data Destruction
+description: |-
+  Detect possible data destruction in Snowflake via succesful DROP queries.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:snowflake
+  query_type:DROP
+  execution_status:SUCCESS
+  | groupbycount(user_name)
+  | where @q.count > 10
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0040.impact
+- techniques.t1485.data_destruction
+- source.snowflake

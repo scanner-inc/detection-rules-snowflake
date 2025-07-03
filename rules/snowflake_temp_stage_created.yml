@@ -1,0 +1,22 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake Temporary Stage Created
+description: |-
+  Detect when temporary stages are created, which may be
+  used for data exfiltration or staging malicious files.
+enabled: true
+severity: Informational
+query_text: |-
+  %ingest.source_type:snowflake
+  query_type:CREATE
+  execution_status:SUCCESS
+  query_text:('CREATE TEMP* STAGE' or 'CREATE OR REPLACE TEMP* STAGE')
+  | groupbycount(user_name)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- informational_severity_alerts
+tags:
+- tactics.ta0010.exfiltration
+- techniques.t1041.exfiltration_over_c2_channel
+- source.snowflake

@@ -1,0 +1,19 @@
+# schema: https://scanner.dev/schema/scanner-detection-rule.v1.json
+name: Snowflake Public Role Granted
+description: |-
+  Detect grants to the public role.
+enabled: true
+severity: Medium
+query_text: |-
+  %ingest.source_type:snowflake
+  grantee_name:PUBLIC
+  | groupbycount(granted_by)
+  | where @q.count > 0
+time_range_s: 300
+run_frequency_s: 60
+event_sink_keys:
+- medium_severity_alerts
+tags:
+- tactics.ta0004.privilege_escalation
+- techniques.t1078.valid_accounts
+- source.snowflake
