@@ -5,7 +5,7 @@ description: |-
 enabled: true
 severity: Informational
 query_text: |-
-  %ingest.source_type:snowflake
+  %ingest.source_type:"snowflake:query_history"
   query_type:CREATE_USER
   execution_status:SUCCESS
   query_text:'CREATE USER'

@@ -7,7 +7,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:snowflake
+  %ingest.source_type:"snowflake:query_history"
   query_type:SHOW
   query_text:(SHOW and ROLES)
   | groupbycount(user_name)

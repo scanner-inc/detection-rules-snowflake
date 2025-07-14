@@ -5,7 +5,7 @@ description: |-
 enabled: true
 severity: Informational
 query_text: |-
-  %ingest.source_type:snowflake
+  %ingest.source_type:"snowflake:query_history"
   query_type:GET_FILES
   execution_status:SUCCESS
   (not query_text:'GET \'@~/worksheet_data/metadata\' \'file:///\'')

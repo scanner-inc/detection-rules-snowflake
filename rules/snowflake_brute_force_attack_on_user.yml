@@ -5,7 +5,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:snowflake
+  %ingest.source_type:"snowflake:login_history"
   event_type:LOGIN
   is_success:NO
   first_authentication_factor:PASSWORD

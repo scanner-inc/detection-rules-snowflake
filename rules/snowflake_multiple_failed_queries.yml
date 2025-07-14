@@ -6,7 +6,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:snowflake
+  %ingest.source_type:"snowflake:query_history"
   (not execution_status:SUCCESS)
   | groupbycount(user_name)
   | where @q.count > 50

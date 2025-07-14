@@ -18,8 +18,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:snowflake
-  snowflake.table:query_history
+  %ingest.source_type:"snowflake:query_history"
   query_type:(CREATE_NETWORK_POLICY ALTER_NETWORK_POLICY DROP_NETWORK_POLICY)
   | groupbycount(user_name)
   | where @q.count > 0
