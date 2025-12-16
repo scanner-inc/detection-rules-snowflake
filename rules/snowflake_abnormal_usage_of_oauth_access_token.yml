@@ -25,7 +25,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:snowflake
+  @scnr.source_type:snowflake
   snowflake.table:login_history
   first_authentication_factor:OAUTH_ACCESS_TOKEN
   (not reported_client_type:JDBC_DRIVER)
