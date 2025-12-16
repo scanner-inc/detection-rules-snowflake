@@ -6,7 +6,7 @@ description: |-
 enabled: true
 severity: Informational
 query_text: |-
-  %ingest.source_type:snowflake
+  @scnr.source_type:snowflake
   query_type:CREATE
   execution_status:SUCCESS
   query_text:('CREATE TEMP* STAGE' or 'CREATE OR REPLACE TEMP* STAGE')

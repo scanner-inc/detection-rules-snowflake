@@ -6,7 +6,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:snowflake
+  @scnr.source_type:snowflake
   total_elapsed_time > 10000
   | groupbycount(user_name)
   | where @q.count > 0

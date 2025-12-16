@@ -17,7 +17,7 @@ description: |-
 enabled: true
 severity: Medium
 query_text: |-
-  %ingest.source_type:snowflake
+  @scnr.source_type:snowflake
   snowflake.table:grants_to_users
   action:GRANT_CREATED
   role:(ORGADMIN ACCOUNTADMIN SECURITYADMIN SYSADMIN)

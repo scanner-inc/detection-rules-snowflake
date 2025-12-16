@@ -6,7 +6,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:snowflake
+  @scnr.source_type:snowflake
   (client_environment.application:*rapeflake* OR (client_environment.application:*DBeaver* AND client_environment.os:Windows))
   | groupbycount(client_environment.application)
   | where @q.count > 0

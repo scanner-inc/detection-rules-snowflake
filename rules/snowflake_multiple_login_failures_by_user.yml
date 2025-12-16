@@ -6,7 +6,7 @@ description: |-
 enabled: true
 severity: High
 query_text: |-
-  %ingest.source_type:snowflake
+  @scnr.source_type:snowflake
   event_type:LOGIN
   is_success:NO
   | groupbycount(user_name)
