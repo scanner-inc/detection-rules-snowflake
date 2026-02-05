@@ -2,7 +2,6 @@
 name: Snowflake Brute Force Attack on User
 description: |-
   Detect a potential brute force attack by monitoring failed logins from the same Snowflake user.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:snowflake

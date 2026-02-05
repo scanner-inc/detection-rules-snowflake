@@ -3,7 +3,6 @@ name: Snowflake External Data Share
 description: |-
   Detect when a data transfer between different cloud regions or providers
   occurs, which may indicate data exfiltration or unauthorized data movement.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake

@@ -22,7 +22,6 @@ description: |-
   1. Inspect the logs to verify if the IP address aligns with expected user or service account behavior.
   2. Investigate unfamiliar IP addresses that are followed by query activity.
   3. If the account is compromised, recreate the access token.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:snowflake

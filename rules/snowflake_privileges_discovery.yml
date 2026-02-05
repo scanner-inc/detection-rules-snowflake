@@ -4,7 +4,6 @@ description: |-
   Detect possible privileges discovery activity in Snowflake.
   This can indicate potential reconnaissance or privilege
   escalation attempts.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake

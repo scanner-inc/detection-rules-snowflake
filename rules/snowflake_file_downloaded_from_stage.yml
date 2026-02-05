@@ -2,7 +2,6 @@
 name: Snowflake File Downloaded from Stage
 description: |-
   Detect when files are downloaded from Snowflake stages, which may indicate data exfiltration attempts.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:snowflake

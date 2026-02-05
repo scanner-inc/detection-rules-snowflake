@@ -3,7 +3,6 @@ name: Snowflake Discovery Activity
 description: |-
   Detect possible discovery activity in Snowflake by monitoring SHOW queries.
   This can indicate potential reconnaissance or enumeration attempts.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake

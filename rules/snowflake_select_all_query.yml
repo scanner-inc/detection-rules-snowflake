@@ -2,7 +2,6 @@
 name: Snowflake Select All Query
 description: |-
   Detect "SELECT *" queries in Snowflake, which may indicate data collection or reconnaissance activities.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake

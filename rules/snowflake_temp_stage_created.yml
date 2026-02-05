@@ -3,7 +3,6 @@ name: Snowflake Temporary Stage Created
 description: |-
   Detect when temporary stages are created, which may be
   used for data exfiltration or staging malicious files.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:snowflake

@@ -3,7 +3,6 @@ name: Snowflake Multiple Login Failures by User
 description: |-
   Detect multiple login failures by a user in Snowflake. This can
   indicate potential brute force or credential stuffing attacks.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:snowflake

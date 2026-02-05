@@ -3,7 +3,6 @@ name: Snowflake Long Query Process Time
 description: |-
   Detect queries with long processing times. This can indicate
   potential denial of service orresource exhaustion attacks.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake

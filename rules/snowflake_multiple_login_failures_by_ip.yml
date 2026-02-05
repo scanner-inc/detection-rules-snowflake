@@ -4,7 +4,6 @@ description: |-
   Detect multiple login failures from a single IP in Snowflake.
   This can indicate potential brute force or credential stuffing
   attacks.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:snowflake

@@ -15,7 +15,6 @@ description: |-
   2. Investigate if the user is an admin by referencing the Grants to User table in Snowflake.
   3. If the user is not an admin or was recently assigned admin, check for signs of compromise.
   4. Otherwise, review internal change management to verify if this was an expected change.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake

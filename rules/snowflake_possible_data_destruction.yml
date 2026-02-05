@@ -2,7 +2,6 @@
 name: Snowflake Possible Data Destruction
 description: |-
   Detect possible data destruction in Snowflake via succesful DROP queries.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake

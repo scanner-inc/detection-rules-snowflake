@@ -14,7 +14,6 @@ description: |-
   1. Inspect the logs to identify the user, role granted, and timestamp.
   2. Investigate whether the user's elevated permissions are expected.
   3. If there are signs of compromise, disable the user associated with the admin grant and rotate credentials.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake

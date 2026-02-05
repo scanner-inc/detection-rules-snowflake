@@ -3,7 +3,6 @@ name: Snowflake Multiple Failed Queries
 description: |-
   Detect when multiple failed queries are executed in Snowflake.
   This can indicate potential discovery or enumeration attempts.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:snowflake

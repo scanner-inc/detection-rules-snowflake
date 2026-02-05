@@ -2,7 +2,6 @@
 name: Snowflake User Enabled
 description: |-
   Detect when previously disabled user accounts are reenabled in Snowfake.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:snowflake

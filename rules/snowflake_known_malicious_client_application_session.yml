@@ -3,7 +3,6 @@ name: Snowflake Known Malicious Client Application Session
 description: |-
   Detect known malicious client applications interacting in your Snowflake environment.
   An attacker may set up a session from an outside tool to access and exfiltrate data.
-enabled: true
 severity: High
 query_text: |-
   @scnr.source_type:snowflake

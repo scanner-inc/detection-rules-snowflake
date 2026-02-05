@@ -3,7 +3,6 @@ name: Snowflake Table Copied Into Stage
 description: |
   Detect when data is copied from tables into stages,
   which may indicate data exfiltration attempts.
-enabled: true
 severity: Informational
 query_text: |-
   @scnr.source_type:snowflake

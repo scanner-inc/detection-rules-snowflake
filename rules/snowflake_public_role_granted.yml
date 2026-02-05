@@ -2,7 +2,6 @@
 name: Snowflake Public Role Granted
 description: |-
   Detect grants to the public role.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake

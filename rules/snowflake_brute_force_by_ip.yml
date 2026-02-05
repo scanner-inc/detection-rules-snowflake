@@ -2,7 +2,6 @@
 name: Snowflake Brute Force Attacks by IP
 description: |-
   Detect a potential brute force attack by monitoring failed logins from the same IP address.
-enabled: true
 severity: Medium
 query_text: |-
   @scnr.source_type:snowflake
